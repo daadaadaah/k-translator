@@ -34,7 +34,7 @@ This is a vscode extension which can help you write names for variables, functio
 
 #### (3) Google 로 번역하기
 - MacOS: `cmd + Shift + Ctrl + t`
-- Window: `Ctrl + Shift + Window + t`
+- Window: `Ctrl + Shift + alt + t`
 
 
 ## Tutorial
@@ -66,3 +66,6 @@ This is a vscode extension which can help you write names for variables, functio
 
 ### 1.0.0
 - Initial release of Translator.
+
+### 1.0.1
+- Modify shortcuts for window version

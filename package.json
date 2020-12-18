@@ -1,0 +1,144 @@
+{
+	"name": "k-translator",
+	"displayName": "K translator",
+	"description": "A vscode extension for translation",
+	"version": "1.0.2",
+	"publisher": "daadaadaah",
+	"engines": {
+		"vscode": "^1.51.0"
+	},
+	"icon": "images/ktranslator_logo.png",
+	"categories": [
+		"Other"
+	],
+	"repository": "https://github.com/daadaadaah/k-translator.git",
+	"activationEvents": [
+		"onCommand:k-translator.translateWord",
+		"onCommand:k-translator.translateWordWithGoogleTranslation",
+		"onCommand:k-translator.translateWordWithNaverPapago"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"configuration": [
+			{
+				"title": "translator",
+				"properties": {
+					"k-translator.preferenceType": {
+						"type": "string",
+						"enum": [
+							"google",
+							"naver"
+						],
+						"default": null,
+						"description": "선호하는 번역 API (google, naver) 를 등록해주세요"
+					},
+					"k-translator.naver": {
+						"type": "object",
+						"default": {
+							"clientId": null,
+							"clientSecret": null
+						},
+						"properties": {
+							"clientId": {
+								"type": "string",
+								"default": null,
+								"description": "Naver Open API Client Id"
+							},
+							"clientSecret": {
+								"type": "string",
+								"default": null,
+								"description": " Naver Open API Client Secret"
+							}
+						}
+					}
+				}
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "k-translator.translateWord",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "k-translator.translateWordWithGoogleTranslation",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "k-translator.translateWordWithNaverPapago",
+					"when": "editorHasSelection"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "k-translator.translateWord",
+				"title": "[K-Translator]"
+			},
+			{
+				"command": "k-translator.translateWordWithGoogleTranslation",
+				"title": "[K-Translator] Google Translation"
+			},
+			{
+				"command": "k-translator.translateWordWithNaverPapago",
+				"title": "[K-Translator] Naver Papago (Naver Open API Client ID and Scecret is required)"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "k-translator.translateWord",
+				"mac": "cmd+shift+t",
+				"key": "ctrl+shift+t",
+				"when": "editorHasSelection"
+			},
+			{
+				"command": "k-translator.translateWordWithNaverPapago",
+				"mac": "cmd+ctrl+t",
+				"key": "ctrl+win+t",
+				"when": "editorHasSelection"
+			},
+			{
+				"command": "k-translator.translateWordWithGoogleTranslation",
+				"mac": "cmd+shift+ctrl+t",
+				"key": "ctrl+shift+alt+t",
+				"when": "editorHasSelection"
+			}
+		]
+	},
+	"scripts": {
+		"watch": "webpack --watch --devtool nosources-source-map --info-verbosity verbose --config ./build/node-extension.webpack.config.js",
+		"test": "tsc -watch -p ./",
+		"test-compile": "tsc -p ./",
+		"compile": "webpack --devtool nosources-source-map --config ./build/node-extension.webpack.config.js",
+		"package": "webpack --mode production --config ./build/node-extension.webpack.config.js",
+		"pretest": "npm run test-compile && npm run lint",
+		"test-unit": "jest",
+		"test-unit:watch": "npm run test-unit -- --watchAll --verbose --coverage",
+		"lint": "eslint src --ext ts",
+		"vscode:prepublish": "npm run package",
+		"vscode:publish": "vsce publish"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/jest": "^26.0.16",
+		"@types/vscode": "^1.51.0",
+		"@typescript-eslint/eslint-plugin": "^4.1.1",
+		"@typescript-eslint/parser": "^4.1.1",
+		"eslint": "^7.9.0",
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jest": "^24.1.3",
+		"glob": "^7.1.6",
+		"jest": "^26.6.3",
+		"ts-jest": "^26.4.4",
+		"ts-loader": "^8.0.3",
+		"typescript": "^4.0.2",
+		"vscode-test": "^1.4.0",
+		"webpack": "^4.44.1",
+		"webpack-cli": "^3.3.12"
+	},
+	"dependencies": {
+		"@types/node-fetch": "^2.5.7",
+		"node-fetch": "^2.6.1"
+	}
+}

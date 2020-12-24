@@ -1,6 +1,8 @@
 import fetch from 'node-fetch';
 
-import { isKo, removeSpecialCharacters, isSentences } from './utils';
+import {
+  isKo, removeSpecialCharacters, isSentences, isEmpty,
+} from './utils';
 
 interface TranslatedWord {
   label: string,
@@ -31,6 +33,15 @@ export const fetchTranslatedWordsWithGoogle = async (
     translatedWords.push({
       label: result.sentences[0].trans,
       detail: text,
+    });
+
+    return translatedWords;
+  }
+
+  if (isEmpty(result.dict)) {
+    translatedWords.push({
+      label: result.sentences[0].trans,
+      description: text,
     });
 
     return translatedWords;

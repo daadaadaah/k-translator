@@ -2,7 +2,7 @@
 	"name": "k-translator",
 	"displayName": "K translator",
 	"description": "A vscode extension for translation",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"publisher": "daadaadaah",
 	"engines": {
 		"vscode": "^1.51.0"

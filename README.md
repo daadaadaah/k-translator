@@ -63,6 +63,9 @@ This is a vscode extension which can help you write names for variables, functio
 
 
 ## Release Notes
+### 1.0.3
+- Fix Bug ([#4](https://github.com/daadaadaah/k-translator/issues/4))
+
 ### 1.0.2
 - Fix Bug ([#1](https://github.com/daadaadaah/k-translator/issues/1))
 - Specify restrictions on the use of Google Translate

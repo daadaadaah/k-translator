@@ -18,3 +18,19 @@ export const isSentences = (text: string): boolean => {
 
   return false;
 };
+
+export const isEmpty = (arr: Array<any> | undefined | null): boolean => {
+  if (arr === undefined) {
+    return true;
+  }
+
+  if (arr === null) {
+    return true;
+  }
+
+  if (arr.length === 0) {
+    return true;
+  }
+
+  return false;
+};
